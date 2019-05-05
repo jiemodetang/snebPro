@@ -1,0 +1,35 @@
+/* pages/snebIndex/snebIndex.wxss */
+
+.slide-image{
+  width: 100%;
+}
+.plate {
+  height: 200rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+
+.plate-item {
+  display: flex;
+  flex-direction: column;
+  width: 140rpx;
+  height: 140rpx;
+  padding: 30rpx;
+}
+
+.plate-img {
+  text-align: center;
+}
+
+.plate-img image {
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+
+.plate-info {
+  font-size: 30rpx;
+  font-family: '微软雅黑';
+  text-align: center;
+}
