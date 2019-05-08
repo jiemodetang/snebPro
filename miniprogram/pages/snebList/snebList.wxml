@@ -1,17 +1,34 @@
-<view style="display:none">
-  <image wx:for="{{images}}" wx:key="id" id="{{item.id}}" src="{{item.pic}}" bindload="onImageLoad"></image>
-</view>
-<scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
-  <view style="width:100%">
-    <view class="img_item">
-      <view wx:for="{{col1}}" wx:key="id">
-        <image src="{{item.pic}}" style="width:100%;height:{{item.height}}px"></image>
-      </view>
+
+<block >
+    <view class="film">
+        <block wx:for="{{films}}" wx:for-index="filmIndex" wx:for-item="filmItem" wx:key="film">
+            <view data-id="{{filmItem.id}}" class="film-item" catchtap="goSnebDetail">
+                <view class="film-cover">
+                    <image src="{{filmItem.images.large}}" class="film-cover-img"></image>
+                    <view class="film-rating">
+                        <block wx:if="{{filmItem.rating.average == 0}}">
+                            暂无评分
+                        </block>
+                        <block wx:else>
+                            {{filmItem.rating.average}}分
+                        </block>
+                    </view>
+                </view>
+                <view class="file-intro">
+                    <view class="film-title">{{filmItem.title}}</view>
+                    <view class="film-tag">
+                        <view class="film-tag-item" wx:for="{{filmItem.genres}}" wx:for-item="filmTagItem" wx:key="filmTag" data-tag="{{filmTagItem}}" catchtap="viewFilmByTag">
+                            {{filmTagItem}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{hasMore}}">
+            <view class="loading-tip">拼命加载中…</view>
+        </block>
+        <block wx:else>
+            <view class="loading-tip">没有更多内容了</view>
+        </block>
     </view>
-    <view class="img_item">
-      <view wx:for="{{col2}}" wx:key="id">
-        <image src="{{item.pic}}" style="width:100%;height:{{item.height}}px"></image>
-      </view>
-    </view>
-  </view>
-</scroll-view>
+</block>

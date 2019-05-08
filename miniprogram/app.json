@@ -1,17 +1,19 @@
 {
   "pages": [
     "pages/snebMe/snebMe",
+    "pages/snebLogin/snebLogin",
     "pages/snebIndex/snebIndex",
     "pages/snebList/snebList",
-        "pages/index/index",
-        
+    "pages/index/index",
+    "pages/snebRegister/snebRegister",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi"
+    "pages/openapi/openapi",
+    "pages/snebDetail/snebDetail"
   ],
   "tabBar": {
     "list": [
