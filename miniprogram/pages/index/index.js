@@ -1,6 +1,8 @@
 //index.js
 const app = getApp()
 
+const _ = require('../../libs/loadsh.js')
+
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
