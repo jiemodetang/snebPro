@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/updataHomeArticle/updataHomeArticle",
     "pages/snebIndex/snebIndex",
     "pages/snebMe/snebMe",
     "pages/snebList/snebList",
@@ -10,8 +11,7 @@
     "component/list/list",
     "pages/snebUpload/snebUpload",
     "pages/updateLocation/updateLocation",
-    "pages/indexInfor/indexInfor",
-    "pages/updataHomeArticle/updataHomeArticle"
+    "pages/indexInfor/indexInfor"
   ],
   "tabBar": {
     "list": [

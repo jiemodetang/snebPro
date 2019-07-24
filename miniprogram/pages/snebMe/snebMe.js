@@ -32,14 +32,14 @@ Page({
         text: '',
         access: true,
         // viewPersonInfo
-        fn: ''
+        fn: 'viewPersonInfo'
       }],
       [{
           title: '文章编写',
           text: '',
           access: true,
         // updataHomeArticle
-        fn: ''
+        fn: 'updataHomeArticle'
         },
 
       ],
@@ -65,7 +65,9 @@ Page({
     hiddenmodalput: true,
     openid: '',
     inputValue: '',
-    canSelectClass: true
+    canSelectClass: true,
+    updateLocationModealInputValue:'',
+    updateLocationModeal:true
   },
   onReady: function() {},
   /**
@@ -110,20 +112,26 @@ Page({
 
   },
   viewPersonInfo: function() {
-    console.log(1111)
+    const { canSelectClass} = this.data
+    if (canSelectClass){
+      return
+    }
     wx.navigateTo({
       url: "../snebUpload/snebUpload"
     })
   },
   updateLocation: function() {
+   
     wx.navigateTo({
       url: "../updateLocation/updateLocation"
     })
   }, 
   updataHomeArticle: function() {
-    wx.navigateTo({
-      url: "../updataHomeArticle/updataHomeArticle"
+    this.setData({
+      updateLocationModeal: false
     })
+
+ 
   },
   clearStorage: function() {
 
@@ -255,7 +263,8 @@ Page({
   //弹窗取消
   cancel: function() {
     this.setData({
-      hiddenmodalput: true
+      hiddenmodalput: true,
+      updateLocationModeal:true
     });
   },
 
@@ -313,6 +322,20 @@ Page({
     this.setData({
       hiddenmodalput: true,
     })
+  },
+  updateLocationModealConfirm(){
+    if (this.data.updateLocationModealInputValue == 'admin') {
+      wx.navigateTo({
+        url: "../updataHomeArticle/updataHomeArticle"
+      })
+    }
+  },
+  updateLocationModealChange(e){
+    var val = e.detail.value;
+    console.log(this.data.updateLocationModealInputValue)
+    this.setData({
+      updateLocationModealInputValue: val
+    });
   },
   //授权
   onGetUserInfo: function(e) {

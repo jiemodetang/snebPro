@@ -81,3 +81,8 @@
   <input type='text' placeholder="请输入内容"  value='{{inputValue}}' bindinput='bindinputChange' />
 
 </modal>
+<modal hidden="{{updateLocationModeal}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="updateLocationModealConfirm">
+
+  <input type='text' placeholder="请输入内容"  value='{{updateLocationModealInputValue}}' bindinput='updateLocationModealChange' />
+
+</modal>
