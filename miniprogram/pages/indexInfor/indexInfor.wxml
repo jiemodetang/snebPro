@@ -1,0 +1,36 @@
+<!--miniprogram/pages/indexInfor/indexInfor.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">从你的全世界路过</view>
+    <view class="page__desc">芥末的糖</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-article">
+      <!-- <view class="weui-article__h1">你好陌生人</view> -->
+      <view class="weui-article__section">
+        <!-- <view class="weui-article__title">章标题</view> -->
+        <view class="weui-article__section">
+          <!-- <view class="weui-article__h3">1.1 节标题</view> -->
+          <view class="weui-article__p">
+            <text>
+                我从你的全世界路过。
+                春风也刚从冬雪里路过，便迎来了夏风。而秋风也在岁月中快速而温柔吹来。“路过”一词，让我想起了泰戈尔的《流萤集》：“天空不留下鸟的痕迹，但我已飞过”。人生漫漫，路也远长。不知不觉中，我们生活在别人的世界里，也生活在自己的世界里。每个人在生活中扮演了不同的角色，改变着不同的故事，在每个岔口与他人交集，却也抵不过分离的结局。时间的流逝，岁月的无情，地域的远隔，时候生与死的未知。最后剩下的只是相同的结局与从你的世界里路过。让人无法忘怀的是路过你世界里的风景，路过每个生活世界里的惊喜与懵懂，还有相互在陌路花开之季的碰撞与交集。那一起在风中走过来的时光。
+
+　　        每个故事里写了多少个青春中的你我，那些年少时的迷茫、叛逆、固执、任性、轻狂。那些故事中每个有期许，有奋斗过的梦想。那些拥有一夜之间深如大海的感情。却也只是在他人或者某个世界里的一次路过。在几次路过后学会了成熟，懂得了责任，付出了认真。也在星河岁月中，懂得了付出也许不会有结果，但至少我们努力过。在别人世界里收获的每个故事何尝不是自己坚强的后盾，自己的故事在别人知道后又何尝不是他的后盾。你路过我的世界的同时，我也从你的全世界路过。这些全是自己从《从你的全世界路过》获得的感触 。
+
+　　正处于青春路上的自己说不出太多的道理，写不出什么长篇大论。书中的很多故事都是发生在我们身边，总会有那么一瞬间你会在别人的故事理发现自己的身影。书中的他们也是我们，处于不同的年代，却是接近完美相似的故事。这也许就是路过不同的世界，却有着相同的亲切感吧。
+
+　　一些人从我的世界路过，我也从一些人的世界里路过。  
+          </text>
+          </view>
+          <view class="weui-article__p">
+            <!-- <image class="weui-article__img" src="../images/pic_article.png" mode="aspectFit" style="height: 180px" />
+            <image class="weui-article__img" src="../images/pic_article.png" mode="aspectFit" style="height: 180px" /> -->
+          </view>
+        </view>
+        <view class="weui-article__section">
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

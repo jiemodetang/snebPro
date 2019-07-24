@@ -1,7 +1,12 @@
 /* pages/snebIndex/snebIndex.wxss */
 
+.indexSwiper{
+height: 100%
+}
 .slide-image{
   width: 100%;
+  height: 100%
+
 }
 .plate {
   height: 200rpx;

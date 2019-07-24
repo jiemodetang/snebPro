@@ -1,33 +1,37 @@
 {
   "pages": [
-    "pages/snebMe/snebMe",
-    "pages/snebLogin/snebLogin",
     "pages/snebIndex/snebIndex",
+    "pages/snebMe/snebMe",
     "pages/snebList/snebList",
-    "pages/index/index",
+    "pages/snebLogin/snebLogin",
     "pages/snebRegister/snebRegister",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/snebDetail/snebDetail"
+    "pages/snebDetail/snebDetail",
+    "component/list/list",
+    "pages/snebUpload/snebUpload",
+    "pages/updateLocation/updateLocation",
+    "pages/indexInfor/indexInfor",
+    "pages/updataHomeArticle/updataHomeArticle"
   ],
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/snebIndex/snebIndex",
-        "text": "首页"
+        "text": "开始",
+        "iconPath": "img/shouye.png",
+        "selectedIconPath": "img/shouye.png"
       },
       {
         "pagePath": "pages/snebList/snebList",
-        "text": "列表"
+        "text": "大家",
+        "iconPath": "img/banjiquan.png",
+        "selectedIconPath": "img/banjiquan.png"
       },
       {
         "pagePath": "pages/snebMe/snebMe",
-        "text": "日志"
+        "text": "我的",
+        "iconPath": "img/geren.png",
+        "selectedIconPath": "img/geren.png"
       }
     ]
   },
@@ -35,7 +39,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "芥末的糖",
+    "navigationBarTitleText": "三年二班",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

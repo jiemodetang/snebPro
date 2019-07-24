@@ -1,2 +1,101 @@
 <!--miniprogram/pages/snebDetail/snebDetail.wxml-->
-<text>miniprogram/pages/snebDetail/snebDetail.wxml</text>
+<view class="container">
+  <block wx:if="{{showContent}}">
+    <!-- fd: film detail -->
+    <view class="fd-hd">
+      <image class="fd-hd-bg" src="{{snebDetail.images}}">
+    </image>
+      <image src="{{snebDetail.images}}" class="fd-cover"></image>
+      <view class="fd-intro">
+        <view class="fd-title">{{snebDetail.title}}</view>
+        <view class="fd-intro-txt">拍照者：{{snebDetail.directors.name?'':"路人"}}</view>
+        <!-- <view class="fd-intro-txt">上镜者：
+          <block wx:for="{{snebDetail.casts}}" wx:for-item="snebDetailCastItem" wx:for-index="snebDetailCastIndex" wx:key="snebDetailCastItem">
+            {{snebDetailCastItem.name}}
+            <block wx:if="{{snebDetailCastIndex !== snebDetail.casts.length - 1}}">/</block>
+          </block>
+        </view> -->
+        <view class="fd-intro-txt">班友评分：
+          <block wx:if="{{snebDetail.average }}">
+            暂无评分
+          </block>
+          <block wx:else>
+            {{snebDetail.rating.average}}分
+          </block>
+        </view>
+        <view class="fd-intro-txt">拍照时间：{{snebDetail.year}}年</view>
+      </view>
+      <!-- <view class="fd-favorite {{isFilmFavorite ? 'fd-favorite-active' : ''}}" bindtap="favoriteFilm">收藏</view> -->
+    </view>
+    <view class="fd-data">
+      <view class="fd-data-item">
+        <view class="fd-data-num">{{snebDetail.collect_count}}</view>
+        <view class="fd-data-title">看过</view>
+      </view>
+      <!-- <view class="fd-data-item">
+        <view class="fd-data-num">{{snebDetail.wish_count}}</view>
+        <view class="fd-data-title">想看</view>
+      </view> -->
+      <view class="fd-data-item">
+        <view class="fd-data-num">{{snebDetail.comment.length}}</view>
+        <view class="fd-data-title">评论人数</view>
+      </view>
+    </view>
+    <view class="fd-bd">
+      <view class="fd-bd-title">
+        <view>
+          叽叽喳喳的评论
+        </view>
+        <view>
+          <button class="" type="primary" size="mini" class='fd-bd-button' bindtap='commentsFun'>评论</button>
+        </view>
+      </view>
+
+      <view class="weui-cells weui-cells_after-title">
+        <block wx:for="{{snebDetail.comment  }}" wx:for-item="snebDetailCommentItem" wx:key="snebDetailCommentIndex">
+          <view class="weui-cell">
+            <view class="weui-cell__hd" style="position: relative;margin-right: 10px;position:absolute;top:20rpx;">
+              <image src="{{snebDetailCommentItem.image}}" style="width: 30px; height: 30px; display: block;border-radius:280rpx;" />
+            </view>
+            <view class="weui-cell__bd" style='margin-left:75rpx;'>
+              <view>{{snebDetailCommentItem.content}}</view>
+              <view style="font-size: 13px;color: #888888;text-align:right">{{snebDetailCommentItem.time}}</view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+      <!-- 人员view -->
+      <view class="fd-bd-title">相关图片</view>
+      <view class="fd-bd-person">
+        <!-- <view class="fd-bd-person-item" data-id="{{snebDetail.directors[0].id}}" bindtap="viewPersonDetail">
+          <image class="fd-bd-person-avatar" src="{{snebDetail.directors[0].images}}"></image>
+          <view class="fd-bd-person-name">{{snebDetail.directors[0].name}}</view>
+          <view class="fd-bd-person-role">导演</view>
+        </view> -->
+        <block wx:for="{{snebDetail.casts}}" wx:for-item="snebDetailCastItem" wx:key="snebDetailCastItem">
+          <view class="fd-bd-person-item" data-id="{{snebDetailCastItem.id}}" bindtap="viewPersonDetail">
+            <image class="fd-bd-person-avatar" src="{{snebDetailCastItem}}" 
+              data-src='{{snebDetailCastItem}}'
+            bindtap='previewImg'></image>
+
+          </view>
+        </block>
+      </view>
+      <view class="fd-bd-title">标签</view>
+      <view class="fd-bd-tag">
+        <block wx:for="{{snebDetail.genres}}" wx:for-item="snebDetailTagItem" wx:key="snebDetailTagItem">
+          <view class="fd-bd-tag-item" data-tag="{{snebDetailTagItem}}" catchtap="viewFilmByTag">{{snebDetailTagItem}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+<!-- <import src="../../component/message/message.wxml"/>
+<template is="message" data="{{message: message}}"/> -->
+
+<modal hidden="{{hiddenmodalput}}" title="请输入评论" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+
+  <input type='text' placeholder="请输入评论" auto-focus value='{{inputValue}}' bindinput='inputValueChange' />
+
+</modal>

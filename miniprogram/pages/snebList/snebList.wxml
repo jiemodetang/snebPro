@@ -2,15 +2,12 @@
 <block >
     <view class="film">
         <block wx:for="{{films}}" wx:for-index="filmIndex" wx:for-item="filmItem" wx:key="film">
-            <view data-id="{{filmItem.id}}" class="film-item" catchtap="goSnebDetail">
+            <view data-id="{{filmItem._id}}" class="film-item" catchtap="goSnebDetail">
                 <view class="film-cover">
-                    <image src="{{filmItem.images.large}}" class="film-cover-img"></image>
+                    <image src="{{filmItem.images}}" class="film-cover-img"></image>
                     <view class="film-rating">
-                        <block wx:if="{{filmItem.rating.average == 0}}">
-                            暂无评分
-                        </block>
-                        <block wx:else>
-                            {{filmItem.rating.average}}分
+                        <block >
+                            {{filmItem.average}}分
                         </block>
                     </view>
                 </view>

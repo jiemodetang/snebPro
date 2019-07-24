@@ -1,96 +1,64 @@
+const _ = require('../../libs/loadsh.js')
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     films: [],
     fromDataBase: [],
-    hasMore: true,
-    start: 0
+    hasMore:  false,      
+    start: 0,
+    skipData: 0,
+    limitData: 4
   },
-
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数-W-监听页面加载
    */
   onLoad: function(options) {
     this.getSnebListDate()
   },
   getSnebListDate: function() {
     //还要修改的storge的逻辑
-    
-    const db = wx.cloud.database()
     // 查询当前用户所有的 snebClassBsdSnebInfor
-    db.collection('snebClassBsdSnebInfor').where({
-      _id: this.data.id
-    }).get({
-      success: res => {
-        this.setData({
-          fromDataBase: res.data[0].snebList,
-          films: res.data[0].snebList
-        })
-        wx.setStorage({
-          key: 'snebClassBsdSnebInfor',
-          data: res.data[0].snebList,
-          success: function (res) {
-            console.log(res)
-            console.log('----设置缓存成功----')
-          }
-        })
-        console.log('[数据库] [查询记录] 成功: ')
+    const {
+      skipData,
+      limitData
+    } = this.data
+    wx.cloud.callFunction({
+      name: 'snebClassInfor',
+      data: {
+        action: "snebClassInforGet",
+        skipData: skipData,
+        limitData: limitData
       },
-      fail: err => {
+      success: res => {
+        const {
+          data = []
+        } = res.result.snebClassBsdSnebInforData
+        console.log(data, skipData)
+        if (!_.isEmpty(data)) {
+          this.setData({
+            films: [...this.data.films, ...data]
+          })
+          wx.setStorage({
+            key: 'snebClassBsdSnebInfor',
+            data: [...this.data.films, ...data],
+            success: function(res) {
+              console.log('----设置缓存成功----')
+            }
+          })
+        }
+      },
+      fail: res => {
         wx.showToast({
           icon: 'none',
           title: '查询记录失败'
         })
-        console.error('[数据库] [查询记录] 失败：', err)
       }
+
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
@@ -98,21 +66,38 @@ Page({
 
   },
   onPullDownRefresh: function() {
-    wx.showToast({
-      title: '数据加载中',
-      icon: 'loading',
-      duration: 1000
-    });
-    var that = this
-    this.getSnebListDate()
-  },
-  onReachBottom: function() {
-    var that = this
-    that.setData({
-      films: [...this.data.films, ...this.data.fromDataBase]
+    this.setData({
+      skipData: 0
+    }, function() {
+      wx.showToast({
+        title: '数据加载中',
+        icon: 'loading',
+        duration: 1000
+      });
+      var that = this
+      //暂时干掉上拉刷新这块
+      console.log(1111111111)
+      this.getSnebListDate()
     })
   },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    const {
+      skipData
+    } = this.data
+    this.setData({
+      skipData: this.data.skipData + 4
+    }, function() {
+      console.log(22222222)
+      this.getSnebListDate()
+    })
+  },
+  //跳转详情页
   goSnebDetail: function(e) {
+
+
     var data = e.currentTarget.dataset;
     wx.navigateTo({
       url: "../snebDetail/snebDetail?id=" + data.id

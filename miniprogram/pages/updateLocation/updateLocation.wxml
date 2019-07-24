@@ -1,0 +1,3 @@
+<!--miniprogram/pages/updateLocation/updateLocation.wxml-->
+
+<map id="map"  scale="5" controls="{{controls}}"  bindtap="bindtap"  bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 580px;"  ></map>

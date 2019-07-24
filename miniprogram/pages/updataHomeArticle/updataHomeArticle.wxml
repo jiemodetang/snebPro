@@ -1,0 +1,28 @@
+<!--miniprogram/updataHomeArticle/updataHomeArticle.wxml-->
+ <view class="weui-cells__title">标题:{{pleaseEnterTitle}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入标题" bindinput='pleaseEnterTitle' />
+        </view>
+      </view>
+    </view>
+     <view class="weui-cells__title">作者:{{pleaseEnterAuthor}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入作者"
+          bindinput="pleaseEnterAuthor"/>
+        </view>
+      </view>
+    </view>
+         <view class="weui-cells__title">内容</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+
+      <textarea class="weui-textarea" placeholder="请输入文本" style="height: 200px,margin-bottom:200px" value='{{textareaValue}}' bindinput='bindinput' auto-height maxlength='2000' />
+          <view class="weui-textarea-counter">{{textareaValue.length}}/{{textareaValueLength}}</view>
+    </view>
+  </view>
+</view>
