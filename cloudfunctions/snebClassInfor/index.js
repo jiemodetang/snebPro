@@ -10,32 +10,27 @@ const {
 const db = cloud.database()
 // 云函数入口函数
 async function snebClassInforGet(event) {
-
   const {
     skipData,
     limitData
   } = event
   // 查询当前用户所有的 snebClassBsdSnebInfor
-
   let snebUserData = await db.collection('snebUser').where({
     _openid: OPENID
   }).get()
   let snebBanJiData = await db.collection('snebBanJi').where({
     className: snebUserData.data[0].className
   }).get()
-  let snebClassBsdSnebInforData = {}
-  if (snebBanJiData) {
-    snebClassBsdSnebInforData = await db.collection(snebBanJiData.data[0]. )
-      .skip(skipData) // 跳过结果集中的前 10 条，从第 11 条开始返回
-      .limit(limitData) // 限制返回数量为 10 条
-      .get()
-    return {
-      snebClassBsdSnebInforData,
-    }
-  } else {
-    return {
-      snebClassBsdSnebInforData,
-    }
+  const {data } = snebBanJiData
+  const dataObj = data[0]
+  const classSituation = dataObj.classSituation || ''
+  let snebClassBsdSnebInforData = await db.collection(classSituation)
+    .skip(skipData) // 跳过结果集中的前 10 条，从第 11 条开始返回
+    .limit(limitData) // 限制返回数量为 10 条
+    .get()
+  return {
+    snebClassBsdSnebInforData,
+    data
   }
 
 }

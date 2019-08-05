@@ -1,9 +1,9 @@
   <swiper indicator-dots="{{indicatorDots}}" indicator-color='{{indicatorColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class='indexSwiper' indicator-active-color="{{indicatorActiveColor}}" circular = "{{circular}}" easing-function='{{easingFunction}}'>
 
 
-    <block wx:for="{{imgUrls}}" wx:key=''>
-      <swiper-item>
-        <image src="{{item}}" class="slide-image" width="355" height="150" bindtap='goIndexInforPage'/>
+    <block wx:for="{{imgUrls}}"   wx:key=''>
+      <swiper-item bindtap='goIndexInforPage'   data-index="{{index}}">
+        <image src="{{item.casts[0]}}"  class="slide-image" width="355" height="150" />
       </swiper-item>
     </block>
   </swiper>

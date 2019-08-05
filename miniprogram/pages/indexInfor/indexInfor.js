@@ -6,10 +6,16 @@ Page({
    */
   data: {
     textareaValue:'',
-
+    scarlett:{}
   },
-  
-
+  onLoad(options){
+    // e.沙湾也来着indexforData
+    console.log(options)
+    this.setData({
+      scarlett: JSON.parse(options.indexforData)
+    })
+ 
+  },
   bindinput(e){
     console.log(e)
     this.setData({

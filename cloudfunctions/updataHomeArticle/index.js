@@ -4,8 +4,18 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 const _ = db.command
-// 云函数入口函数
-exports.main = async(event, context) => {
+
+async function updataHomeArticleGet(){
+  const {
+    OPENID,
+    APPID
+  } = cloud.getWXContext()
+  let updataHomeArticleGetData = await db.collection('snebHomeArticle').get()
+  return {
+    updataHomeArticleGetData
+  }
+}
+async function updataHomeArticleUpdate(event){
   const {
     OPENID,
     APPID
@@ -16,7 +26,7 @@ exports.main = async(event, context) => {
     textareaValue,
     casts,
   } = event
-  let snebDetailData = await db.collection('snebHomeArticle').add({
+  let updataHomeArticleData = await db.collection('snebHomeArticle').add({
     data: {
       _openid: OPENID,
       pleaseEnterTitle,
@@ -28,4 +38,23 @@ exports.main = async(event, context) => {
   return {
     updataHomeArticleData
   }
+}
+// 云函数入口函数
+exports.main = async(event, context) => {
+  switch (event.action) {
+    case 'updataHomeArticleGet':
+      {
+        return await updataHomeArticleGet(event)
+      }
+    case 'updataHomeArticleUpdate':
+      {
+        return await updataHomeArticleUpdate(event)
+      }
+    default:
+      {
+        return
+      }
+  }
+
+  
 }

@@ -18,7 +18,7 @@ Page({
   onLoad: function(options) {
     this.getSnebListDate()
   },
-  getSnebListDate: function() {
+  getSnebListDate: function(from) {
     //还要修改的storge的逻辑
     // 查询当前用户所有的 snebClassBsdSnebInfor
     const {
@@ -35,12 +35,19 @@ Page({
       success: res => {
         const {
           data = []
-        } = res.result.snebClassBsdSnebInforData
+        } = res.result.snebClassBsdSnebInforData//总是拿不到数据，本地打个断点就会有数据，之前出现的几次，解决办法，就是上传一下函数啥的就好了，心态爆炸了 ，取点好吃哈哈哈哈哈哈
         console.log(data, skipData)
         if (!_.isEmpty(data)) {
-          this.setData({
-            films: [...this.data.films, ...data]
-          })
+          if (from == "top"){
+            this.setData({
+              films: [ ...data]
+            })
+          }else{
+            this.setData({
+              films: [...this.data.films, ...data]
+            })
+          }
+       
           wx.setStorage({
             key: 'snebClassBsdSnebInfor',
             data: [...this.data.films, ...data],
@@ -77,7 +84,7 @@ Page({
       var that = this
       //暂时干掉上拉刷新这块
       console.log(1111111111)
-      this.getSnebListDate()
+      this.getSnebListDate("top")
     })
   },
   /**

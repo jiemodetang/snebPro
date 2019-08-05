@@ -111,21 +111,27 @@ Page({
         wx.cloud.callFunction({
           name: 'updataHomeArticle',
           data: {
+            action:"updataHomeArticleUpdate",
             pleaseEnterTitle: pleaseEnterTitle,
             pleaseEnterAuthor: pleaseEnterAuthor,
             textareaValue: textareaValue,
             casts: filesFileIDMap,
           },
           success: res => {
+            console.log(res.result)
             if (res.result) {
               wx.showToast({
                 icon: 'success',
                 title: '提交成功'
               })
             }
-
           },
-
+          fail:res=>{
+            wx.showToast({
+              icon: 'none',
+              title: '提交失败'
+            })
+          }
         })
       })
     }else{

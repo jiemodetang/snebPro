@@ -1,9 +1,7 @@
 const img1 = '../../img/timg.jpg'
 Page({
   data: {
-    imgUrls: [
-      img1
-    ],
+    imgUrls: [],
     indicatorDots: true,
     autoplay: false,
     interval: 5000,
@@ -13,7 +11,24 @@ Page({
     circular: true,
     easingFunction: "easeInOutCubic"
   },
+  onLoad(){
+    wx.cloud.callFunction({
+      name: 'updataHomeArticle',
+      data: {
+        action: "updataHomeArticleGet",
+      },
+      success: res => {
+        const {data } = res.result.updataHomeArticleGetData
+        console.log(res.result)
+        if (res.result) {
+          this.setData({
+            imgUrls: data
+          })
+        }
+      },
 
+    })
+  },
   intervalChange(e) {
     this.setData({
       interval: e.detail.value
@@ -24,9 +39,12 @@ Page({
       duration: e.detail.value
     })
   },
-  goIndexInforPage(){
+  goIndexInforPage(e){
+    const { imgUrls} = this.data
+    var data = e.currentTarget.dataset;
+    console.log(imgUrls, data.index)
     wx.navigateTo({
-      url: "../indexInfor/indexInfor"
+      url: "../indexInfor/indexInfor?indexforData=" + JSON.stringify(imgUrls[data.index])
     })
   }
 })
